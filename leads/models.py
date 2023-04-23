@@ -37,7 +37,6 @@ class Agent(models.Model):
     def __str__(self):
         return self.user.email
 
-
 class Category(models.Model):
     name = models.CharField(max_length=30) # New, Contacted, Converted, Unconverted
     organisation = models.ForeignKey(UserProfile, null=True, blank=True, on_delete=models.CASCADE)

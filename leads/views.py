@@ -8,7 +8,7 @@ from django.views.generic import TemplateView, ListView, DetailView, CreateView,
 from django.views import generic
 from agents.mixins import OrganisorAndLoginRequiredMixin
 from .models import Lead, Agent, Category
-from .forms import LeadForm, LeadModelForm, CustomUserCreationForm, AssignAgentForm, LeadCategoryUpdateForm
+from .forms import LeadForm, LeadModelForm, CustomUserCreationForm, AssignAgentForm, LeadCategoryUpdateForm, CategoryModelForm
 
 
 # Create your views here.
@@ -252,14 +252,41 @@ class CategoryDetailView(LoginRequiredMixin, generic.DetailView):
     template_name = "leads/category_detail.html"
     context_object_name = "category"
 
-    def get_context_data(self, *, object_list=None, **kwargs):
-        context = super(CategoryDetailView, self).get_context_data(**kwargs)
-        # qs = Lead.objects.filter(category=self.object())
-        leads = self.get_object().leads.all()
-        context.update({
-            "leads": leads
-        })
-        return context
+    def get_queryset(self):
+        user = self.request.user
+        #initial queryset
+        if user.is_organisor:
+            queryset = Category.objects.filter(
+                organisation=user.userprofile,
+            )
+        else:
+            queryset = Category.objects.filter(
+                organisation=user.agent.organisation,
+            )
+            # queryset = queryset.fileter(agent__user=user)
+        return queryset
+
+
+class CategoryCreateView(OrganisorAndLoginRequiredMixin, CreateView):
+    template_name = "leads/category_create.html"
+    form_class = CategoryModelForm
+
+    def get_success_url(self):
+        return reverse("leads:category-list")
+
+    def form_valid(self, form):
+        category = form.save(commit=False)
+        category.organisation = self.request.user.userprofile
+        category.save()
+        return super(CategoryCreateView, self).form_valid(form)
+
+
+class CategoryUpdateView(OrganisorAndLoginRequiredMixin, UpdateView):
+    template_name = "leads/category_update.html"
+    form_class = CategoryModelForm
+
+    def get_success_url(self):
+        return reverse("leads:category-list")
 
     def get_queryset(self):
         user = self.request.user
@@ -272,7 +299,28 @@ class CategoryDetailView(LoginRequiredMixin, generic.DetailView):
             queryset = Category.objects.filter(
                 organisation=user.agent.organisation,
             )
-            queryset = queryset.fileter(agent__user=user)
+            # queryset = queryset.fileter(agent__user=user)
+        return queryset
+
+
+class CategoryDeleteView(OrganisorAndLoginRequiredMixin, generic.DeleteView):
+    template_name = "leads/category_delete.html"
+
+    def get_success_url(self):
+        return reverse("leads:category-list")
+
+    def get_queryset(self):
+        user = self.request.user
+        #initial queryset
+        if user.is_organisor:
+            queryset = Category.objects.filter(
+                organisation=user.userprofile,
+            )
+        else:
+            queryset = Category.objects.filter(
+                organisation=user.agent.organisation,
+            )
+            # queryset = queryset.fileter(agent__user=user)
         return queryset
 
 
