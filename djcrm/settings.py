@@ -52,6 +52,7 @@ INSTALLED_APPS = [
     # Local Apps
     'leads',
     'agents',
+    'weather',
 ]
 
 MIDDLEWARE = [

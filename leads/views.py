@@ -20,6 +20,10 @@ class SignupView(generic.CreateView):
         return reverse('login')
 
 
+class IndexView(TemplateView):
+    template_name = 'index.html'
+
+
 class LandingPageView(TemplateView):
     template_name = 'landing.html'
 
