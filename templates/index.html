@@ -11,6 +11,7 @@
 <body>
 {% block content %}
 <section>
+<h1 class="mb-4 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-white">Portfolio</h1>
     <div class="p-4 lg:w-1/2 md:w-full">
         <div class="flex border-2 rounded-lg border-gray-200 p-8 sm:flex-row flex-col">
             <div class="w-16 h-16 sm:mr-8 sm:mb-0 mb-4 inline-flex items-center justify-center rounded-full bg-indigo-100 text-indigo-500 flex-shrink-0">
@@ -20,10 +21,10 @@
             </div>
             <div class="flex-grow">
                 <h2 class="text-gray-900 text-lg title-font font-medium mb-3">
-                    Weather App
+                    Mini Apps
                 </h2>
                 <p class="leading-relaxed text-base">
-                    Weather Detector App
+                    Weather Detector App and others.
                 </p>
                 <a href="{% url 'weather:weather-index' %}" class="mt-3 text-indigo-500 inline-flex items-center">
                     Go to App

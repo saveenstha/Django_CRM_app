@@ -1,6 +1,9 @@
 from django.shortcuts import render
+import requests
 import json
 import urllib.request
+from django.views.generic import ListView, DetailView
+from django.shortcuts import render
 
 # Create your views here.
 def index(request):
@@ -19,3 +22,24 @@ def index(request):
         city = ''
         data = {}
     return render(request, 'weather/home.html', {'data': data, 'city': city})
+
+
+def CNJokes(request):
+
+    categories = requests.get('https://api.chucknorris.io/jokes/categories').json()
+
+    if request.method == "GET":
+        url = 'https://api.chucknorris.io/jokes/random'
+
+    if request.method == "POST":
+        category = request.POST['category']
+        url = 'https://api.chucknorris.io/jokes/random?category='+category
+
+    res = requests.get(url)
+    json_data = res.json()
+
+    jokes = {
+        "joke": str(json_data["value"])
+    }
+
+    return render(request,'weather/CNjokes.html', {'jokes': jokes, 'categories': categories})
