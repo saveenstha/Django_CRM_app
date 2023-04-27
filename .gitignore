@@ -1,2 +1,5 @@
 venv
-djcrm/.env
+*.env
+bin/
+lib/
+*.sqlite3
