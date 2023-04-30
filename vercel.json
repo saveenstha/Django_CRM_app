@@ -4,10 +4,7 @@
     {
       "src": "djcrm/wsgi.py",
       "use": "@vercel/python",
-      "config": {
-        "maxLambdaSize":  "15mb",
-        "runtime":  "python3.9"
-      }
+      "config": {"maxLambdaSize":  "15mb","runtime":  "python3.9" }
     },
     {
       "src": "build.sh",
@@ -17,9 +14,6 @@
       }
     }
   ],
-  "env": {
-    "DATABASE_URL":
-  },
   "routes": [
     {
       "src": "/static/(.*)",
