@@ -36,7 +36,15 @@ urlpatterns = [
 
     path('signup/', SignupView.as_view(), name='signup'),
     path('login/', LoginView.as_view(), name='login'),
-    path('logout/', LogoutView.as_view(), name='logout')
+    path('logout/', LogoutView.as_view(), name='logout'),
+
+    path('expenses/', include('expensesapp.urls')),
+    path('authentication/', include('authentication.urls')),
+    path('preferences/', include('userpreferences.urls')),
+    path('incomeapp/', include('incomeapp.urls')),
+    path('economics/', include('economicsapp.urls')),
+
+
 ]
 
 # if settings.DEBUG:

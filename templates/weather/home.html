@@ -22,15 +22,73 @@
         </form>
     </div>
     <div class="container mx-auto px-20" >
+        {% if error_message %}
+            <div class="bg-blue-100 border-t border-b border-blue-500 text-blue-700 px-4 py-3" role="alert">
+              <p class="font-bold">Invalid City</p>
+              <p class="text-sm">{{ error_message}}</p>
+            </div>
+        {% endif %}
         {% if data.country_code %}
-        <div class="col-md-6 col-md-offset-3">
-        <h2 class="text-4xl font-extrabold dark:text-white">{{ city.upper }}</h2>
-        <br>
-            <h3>Country Code: {{ data.country_code }}</h3>
-            <h5>Co-ordinate: {{ data.coordinate }} </h5>
-            <h5>Temperature: {{ data.temp }}</h5>
-            <h5>Pressure: {{ data.pressure }} </h5>
-            <h5>Humidity: {{ data.humidity }} </h5>
+        <div class="relative overflow-x-auto">
+            <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+                <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                    <tr>
+                        <th scope="col" class="px-6 py-3">
+                                    <h2 class="text-4xl font-extrabold dark:text-white">{{ city.upper }}</h2>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                            <h3>Country : </h3>
+                        </th>
+                        <td class="px-6 py-4">
+                            {{ data.country_name }}
+                        </td>
+                    </tr>
+                    <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                            <h3>Country Code: </h3>
+                        </th>
+                        <td class="px-6 py-4">
+                            {{ data.country_code }}
+                        </td>
+                    </tr>
+                    <tr class="bg-white dark:bg-gray-800">
+                        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                            <h5>Co-ordinate: </h5>
+                        </th>
+                        <td class="px-6 py-4">
+                            {{ data.coordinate }}
+                        </td>
+                    </tr>
+                    <tr class="bg-white dark:bg-gray-800">
+                        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                            <h5>Temperature: </h5>
+                        </th>
+                        <td class="px-6 py-4">
+                            {{ data.temp }}
+                        </td>
+                    </tr>
+                    <tr class="bg-white dark:bg-gray-800">
+                        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                            <h5>Pressure: </h5>
+                        </th>
+                        <td class="px-6 py-4">
+                            {{ data.pressure }}
+                        </td>
+                    </tr>
+                    <tr class="bg-white dark:bg-gray-800">
+                        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                            <h5>Humidity: </h5>
+                        </th>
+                        <td class="px-6 py-4">
+                            {{ data.humidity }}
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
         {% endif %}
     </div>

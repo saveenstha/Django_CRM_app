@@ -30,8 +30,8 @@ SECRET_KEY = env('SECRET_KEY')
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-ALLOWED_HOSTS = ["*", ".vercel.app", ".now.sh"]
-
+# ALLOWED_HOSTS = ["*", ".vercel.app", ".now.sh"]
+ALLOWED_HOSTS = ["127.0.0.1"]
 
 # Application definition
 
@@ -52,6 +52,12 @@ INSTALLED_APPS = [
     'leads',
     'agents',
     'weather',
+
+    'expensesapp',
+    'authentication',
+    'userpreferences',
+    'incomeapp',
+    'economicsapp',
 ]
 
 MIDDLEWARE = [
@@ -93,11 +99,11 @@ WSGI_APPLICATION = 'djcrm.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': env('PGDATABASE'),
-        'USER': env('PGUSER'),
-        'PASSWORD': env('PGPASSWORD'),
-        'HOST': env('PGHOST'),
-        'PORT': env('PGPORT'),
+        'NAME': env('DB_NAME'),
+        'USER': env('DB_USER'),
+        'PASSWORD': env('DB_PASSWORD'),
+        'HOST': env('DB_HOST'),
+        'PORT': env('DB_PORT'),
 
     }
 }
@@ -153,8 +159,8 @@ AUTH_USER_MODEL = 'leads.User'
 
 EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 LOGIN_URL = "/login"
-LOGIN_REDIRECT_URL = "/leads"
-LOGOUT_REDIRECT_URL = "/login"
+LOGIN_REDIRECT_URL = "/leads/"
+LOGOUT_REDIRECT_URL = "/login/"
 
 CRISPY_ALLOWED_TEMPLATE_PACKS = "tailwind"
 CRISPY_TEMPLATE_PACK = 'tailwind'

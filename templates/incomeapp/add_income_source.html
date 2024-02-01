@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+
+
+{% block content %}
+    <h1>Add Source</h1>
+    <div class="container mt-4">
+
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{% url 'income' %}">Income</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Add New Source</li>
+          </ol>
+        </nav>
+
+    </div>
+    <div class="card-body">
+        <form action="{% url 'add-income-source' %}" method="post">
+            {% include 'partials/_messages.html' %}
+            {% csrf_token %}
+
+            <div class="form-group">
+                <label for="">Sources</label>
+                <input type="text" name="source" class="form-control">
+
+            </div>
+            <input type="submit" value="Add Source" class="btn btn-primary btn-primary-sm">
+        </form>
+
+    </div>
+
+
+{% endblock %}
+
