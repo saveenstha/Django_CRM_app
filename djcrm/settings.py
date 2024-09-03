@@ -24,7 +24,7 @@ env = environ.Env(
 #     environ.Env.read_env()
 environ.Env.read_env()
 
-DEBUG = env('DEBUG')
+DEBUG = True
 SECRET_KEY = env('SECRET_KEY')
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -52,12 +52,6 @@ INSTALLED_APPS = [
     'leads',
     'agents',
     'weather',
-
-    'expensesapp',
-    'authentication',
-    'userpreferences',
-    'incomeapp',
-    'economicsapp',
 ]
 
 MIDDLEWARE = [
