@@ -1,6 +1,5 @@
 ## bash configuration for vercel
-
-pip install -r requirements.txt
+python3 -m pip install -r requirements.txt
 
 python3.9 manage.py makemigrations --noinput
 python3.9 manage.py migrate --noinput
