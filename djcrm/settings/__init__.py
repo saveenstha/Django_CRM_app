@@ -1,11 +1,8 @@
 import os
-from .base import *
 
-ENVIRONMENT = os.getenv('DJANGO_ENVIRONMENT', 'development')
+environment = os.environ.get('DJANGO_ENV', 'development')
 
-if ENVIRONMENT == 'production':
+if environment == 'production':
     from .production import *
-elif ENVIRONMENT == 'testing':
-    from .testing import *
 else:
     from .development import *
