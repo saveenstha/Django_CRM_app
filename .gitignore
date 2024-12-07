@@ -1,5 +1,6 @@
 venv
 dj_env
+dj_env/*
 *.env
 bin/
 lib/
